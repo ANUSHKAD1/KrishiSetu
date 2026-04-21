@@ -92,23 +92,34 @@ Farmers face:
 
 ---
 
-## 🖼️ Screenshots (Add Your Images)
+## 🖼️ Project Screenshots
 
-👉 Upload your screenshots in repo and replace below links
+### 🌐 Frontend UI
+![Home Page](screenshots/frontend-website-1.png)  
+![Features Section](screenshots/frontend-website-2.png)  
+![About Section](screenshots/frontend-website-3.png)  
 
-```
-/screenshots/home.png
-/screenshots/crop.png
-/screenshots/disease.png
-```
+### 🌾 Crop Recommendation
+![Crop Recommendation](screenshots/crop-recommendation.png)
 
-Example:
+### 🌿 Fertilizer Recommendation
+![Fertilizer Recommendation](screenshots/fertilizer-recommendation.png)
 
-![Home](screenshots/home.png)
-![Crop Recommendation](screenshots/crop.png)
-![Disease Detection](screenshots/disease.png)
+### 🦠 Plant Disease Detection
+![Plant Disease Detection](screenshots/plant-disease-detection.png)
 
----
+### 📊 Crop Performance Report
+![Crop Performance](screenshots/crop-performance-report.png)
+
+### 🌦️ Weather Dashboard
+![Weather Dashboard](screenshots/weather-dashboard.png)
+
+### 🤖 AI Chatbot
+![Chatbot](screenshots/chatbot.png)
+
+### 🏛️ Government Schemes
+![Govt Scheme 1](screenshots/govt-scheme-1.png)  
+![Govt Scheme 2](screenshots/govt-scheme-2.png)
 
 ## 🏗️ Tech Stack
 
