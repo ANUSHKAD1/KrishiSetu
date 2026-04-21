@@ -1,0 +1,117 @@
+/* Page background and font */
+body {
+    background-color: #121212;
+    color: #b0f2b9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #4F5D75;
+    padding: 1rem 2rem;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+
+/* KrishiSetu on left */
+.header-left {
+    position: absolute;
+    left: 20px;
+    font-weight: bold;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: #ccffcc;
+    user-select: none;
+}
+
+/* Centered page title */
+.header-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #acd1a0;
+    user-select: none;
+}
+
+/* Main content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Dropdown */
+select {
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+    background-color: #4F5D75;
+    border: 1px solid #66bb66;
+    color: #ccffcc;
+    border-radius: 4px;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #99ff99;
+}
+
+/* Scheme section titles */
+.scheme-section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #88bb88;
+    font-weight: 700;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #222;
+    color: #b0f2b9;
+}
+
+table thead {
+    background-color: #4F5D75;
+    color: #e0f0d8;
+}
+
+table th, table td {
+    border: 1px solid #2f5d2f;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: middle;
+}
+
+table tr:hover {
+    background-color: #335533;
+}
+
+/* Links */
+a {
+    color: #99ff99;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ######################################################################################### */
+/* Logo styling beside KrishiSetu text */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-left .logo {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+}

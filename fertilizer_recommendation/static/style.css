@@ -1,0 +1,107 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #181A1B;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 400px;
+  margin: 50px auto;
+  background-color: #6F7D8C;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #1a5ec8;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* ########################################################### */
+/* Translucent black header */
+.main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Translucent black */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Logo styling */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Navigation links */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #4CAF50; /* Green hover effect */
+}
+
+/* Push down content to avoid being hidden under fixed header */
+.container {
+  margin-top: 100px;
+}
+/* ########################################################### */

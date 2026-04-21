@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Weather Dashboard</title>
+    <link rel="icon" type="image/png" href="A1.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Ensures smooth blending with existing CSS */
+    nav {
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- 🌿 KrishiSetu Header -->
+  <nav class="text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <!-- Logo + Brand -->
+      <div class="flex items-center space-x-3">
+        <img src="A1.png" alt="KrishiSetu Logo" class="h-8 w-8">
+        <h1 class="text-xl font-bold">
+          Krishi<span class="text-green-400">Setu</span>
+        </h1>
+      </div>
+    </div>
+  </nav>
+<h2>Farm Weather Dashboard</h2>
+  <!-- 🌾 Main Content -->
+  <main>
+    <div class="input-card">
+      <input type="text" id="location" placeholder="Enter location">
+      <select id="crop">
+        <option value="Tomato">Tomato</option>
+        <option value="Cotton">Cotton</option>
+        <option value="Rice">Rice</option>
+        <option value="Wheat">Wheat</option>
+        <option value="Maize">Maize (Corn)</option>
+        <option value="Sugarcane">Sugarcane</option>
+      </select>
+      <button id="getForecast">Get Forecast</button>
+    </div>
+
+    <div id="results" class="results hidden">
+      <div id="statusCard" class="status-card"></div>
+
+      <div class="chart-container">
+        <h2>Temperature Forecast</h2>
+        <div class="chart-wrapper">
+          <canvas id="forecastChart"></canvas>
+        </div>
+      </div>
+
+      <div class="forecast-container">
+        <h2>Daily Breakdown</h2>
+        <ul id="dailyForecast"></ul>
+      </div>
+
+      <div class="recommendations-container">
+        <h2>Precautions</h2>
+        <ul id="recommendations"></ul>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

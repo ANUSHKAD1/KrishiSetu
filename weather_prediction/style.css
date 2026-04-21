@@ -1,0 +1,170 @@
+/* General Body and Layout */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* background-color: #42c1f7; A light, soft blue-gray */
+    background-color:#2D3142;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background-color: #2D3142;
+    color: #2c3e50;
+    padding: 1.5rem 0;
+    text-align: center;
+    border-bottom: 1px solid #445d6f;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Main Content Area */
+main {
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    box-sizing: border-box;
+    /* This ensures the main container itself is centered */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Input Card */
+.input-card {
+    background: #BFC0C0;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+input, select, button {
+    padding: 0.85rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #051b96;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+button {
+    cursor: pointer;
+    background-color: #3083DC;
+    /* color: white; */
+    color: black;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #CBEEF3;
+}
+
+/* Results Section */
+.results {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.status-card {
+    padding: 2rem;
+    border-radius: 12px;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.chart-container, .forecast-container, .recommendations-container {
+    /* background: rgb(17, 172, 215); */
+    background: #EEF5DB;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#dailyForecast li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid #f0f2f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+#dailyForecast li:last-child {
+    border-bottom: none;
+}
+
+#recommendations li {
+    padding: 0.75rem 0;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ##################################################################### */
+
+/* Bright white bold dashboard title */
+header h2 {
+    color: #ffffff;        /* pure white */
+    font-weight: 500;      /* extra bold */
+    font-size: 1.8rem;     /* slightly larger */
+    letter-spacing: 0.5px; /* subtle spacing for clarity */
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.3); /* soft glow */
+}
+
+/* Fix: Make text inside forecast sections clearly visible */
+.chart-container,
+.forecast-container,
+.recommendations-container {
+    color: #111 !important; /* dark readable text */
+}
+
+.chart-container h2,
+.forecast-container h2,
+.recommendations-container h2 {
+    color: #000 !important; /* fully black heading */
+}
+
+#dailyForecast li,
+#recommendations li {
+    color: #222 !important; /* dark gray readable list text */
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Recommendation System</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='A1.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- ############################################################################### -->
+  <!-- <div class="header">
+  <div class="logo">
+    <img src="A1.png" alt="Logo" />
+    <span class="site-title">Krishi<span class="green">Setu</span></span>
+  </div> -->
+  <div class="header">
+  <div class="logo">
+    <img src="{{ url_for('static', filename='A1.png') }}" alt="Logo" class="logo-img">
+    <span class="site-title">Krishi<span class="green">Setu</span></span>
+  </div>
+</div>
+
+  <!-- <nav class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </nav> -->
+</div>
+<!-- ############################################################################# -->
+
+  <div class="container">
+    <h1>🌱 Crop Recommendation System</h1>
+    <form id="cropForm">
+      <label>Nitrogen (N):</label>
+      <input type="number" id="N" required>
+      
+      <label>Phosphorus (P):</label>
+      <input type="number" id="P" required>
+      
+      <label>Potassium (K):</label>
+      <input type="number" id="K" required>
+      
+      <label>Temperature (°C):</label>
+      <input type="number" step="0.1" id="temperature" required>
+      
+      <label>Humidity (%):</label>
+      <input type="number" step="0.1" id="humidity" required>
+      
+      <label>pH:</label>
+      <input type="number" step="0.1" id="ph" required>
+      
+      <label>Rainfall (mm):</label>
+      <input type="number" step="0.1" id="rainfall" required>
+      
+      <button type="submit">Get Recommendation</button>
+    </form>
+    <div id="result"></div>
+  </div>
+  
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

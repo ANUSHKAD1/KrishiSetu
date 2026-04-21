@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiSetu - Smart farming partner</title>
+    <link rel="icon" type="image/png" href="A1.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the chatbot */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* The chat-widget container that is initially hidden */
+        #chat-widget-container {
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
+            transform: scale(0);
+            opacity: 0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* The visible state of the chat widget */
+        #chat-widget-container.open {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* The floating action button (FAB) to open the chat */
+        #chat-open-button {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        #chat-open-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Scrollbar styling for the chat messages */
+        #chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chat-messages::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            /* cool-gray-100 */
+        }
+
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            /* cool-gray-400 */
+            border-radius: 3px;
+        }
+
+        #chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+            /* cool-gray-500 */
+        }
+
+        /* Microphone listening animation */
+        .listening {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* Fix: make chatbot input text black and placeholder gray */
+        #chat-input {
+            color: #000 !important;
+            /* black text */
+            background-color: #fff !important;
+            /* white background */
+        }
+
+        #chat-input::placeholder {
+            color: #666 !important;
+            /* gray placeholder text */
+        }
+
+        /* Optional: match dropdown styling for better visibility */
+        #language-select {
+            color: #000 !important;
+            background-color: #fff !important;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+
+    <!-- ####################################################################################################### -->
+
+    <!-- This is a placeholder for the main website content. -->
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KrishiSetu - Your Smart Farming Partner</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            #bg-video {
+                filter: brightness(0.7) saturate(1.2);
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #0a0a0a;
+                /* A very dark grey instead of pure black for softer feel */
+            }
+
+            .hero-bg {
+                background-color: #0a0a0a;
+                background-image:
+                    radial-gradient(circle at 15% 50%, rgba(34, 197, 94, 0.1), transparent 30%),
+                    radial-gradient(circle at 85% 30%, rgba(34, 197, 94, 0.1), transparent 30%);
+            }
+
+            .service-card,
+            .testimonial-card {
+                background-color: rgba(23, 23, 23, 0.8);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .service-card:hover,
+            .testimonial-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(34, 197, 94, 0.2), 0 10px 10px -5px rgba(34, 197, 94, 0.1);
+            }
+
+            .scroll-animate {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .scroll-animate.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .chatbot-window {
+                transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            }
+
+            .chat-bubble {
+                max-width: 75%;
+            }
+
+            .btn-primary {
+                background: linear-gradient(to right, #22c55e, #16a34a);
+            }
+
+            .btn-primary:hover {
+                background: linear-gradient(to right, #16a34a, #15803d);
+            }
+
+            /* Custom scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #171717;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #22c55e;
+                border-radius: 10px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #16a34a;
+            }
+
+            #preloader {
+                transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+            }
+
+            /* Letter reveal animation */
+            .rishi-letters,
+            .etu-letters {
+                display: inline-block;
+                overflow: hidden;
+                vertical-align: bottom;
+                /* Aligns revealing text with K and S */
+                animation: reveal-letters 1.5s ease-in-out 1s forwards;
+            }
+
+            @keyframes reveal-letters {
+                0% {
+                    max-width: 0;
+                    opacity: 0;
+                }
+
+                30% {
+                    opacity: 0.2;
+                }
+
+                100% {
+                    max-width: 5em;
+                    /* A value large enough to not clip the text */
+                    opacity: 1;
+                }
+            }
+
+            /* Tagline animation */
+            #preloader-tagline {
+                opacity: 0;
+                animation: tagline-fade-in 1.5s ease-out 1.5s forwards;
+            }
+
+            @keyframes tagline-fade-in {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            body.loading {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body class="text-gray-200 loading">
+
+        <!-- ################################################################################## -->
+
+        <!-- Preloader -->
+        <div id="preloader"
+            class="fixed top-0 left-0 w-full h-full bg-[#0a0a0a] flex items-center justify-center z-[100]">
+            <div id="preloader-container" class="text-center">
+                <h1 class="text-7xl md:text-9xl font-extrabold text-white flex items-baseline justify-center leading-tight"
+                    style="white-space: nowrap;">
+                    <span>
+                        <span class="k-letter">K</span><span class="rishi-letters">rishi</span>
+                    </span>
+                    <span class="setu-word">
+                        <span class="s-letter text-green-400">S</span><span
+                            class="etu-letters text-green-400">etu</span>
+                    </span>
+                </h1>
+                <p id="preloader-tagline" class="text-2xl md:text-4xl text-gray-400 mt-6 tracking-wide">
+                    Your Smart Farming Partner
+                </p>
+            </div>
+        </div>
+
+        <!-- ################################################################################## -->
+        <!-- Header -->
+
+        <header class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <!-- Logo/title should be on the left edge -->
+                <a href="#" class="text-2xl font-bold text-white flex items-center">
+                    <img src="A1.png" alt="KrishiSetu Icon" class="w-8 h-8 mr-2" />
+                    Krishi<span class="text-green-400">Setu</span>
+                </a>
+                <!-- Navigation links on the right -->
+                <nav class="hidden md:flex space-x-2 items-center">
+                    <a href="#home"
+                        class="text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">Home</a>
+                    <a href="#about"
+                        class="text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">About</a>
+                    <a href="#services"
+                        class="text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">Services</a>
+                    <a href="#contact"
+                        class="text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">Contact</a>
+                    <a href="#"
+                        class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 ml-6">Login</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+                <a href="#home"
+                    class="block text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">Home</a>
+                <a href="#about"
+                    class="block text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">About</a>
+                <a href="#services"
+                    class="block text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">Services</a>
+                <a href="#contact"
+                    class="block text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">Contact</a>
+                <!-- <a href="#"
+                    class="block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 mt-2">Login</a> -->
+            </div>
+        </header>
+
+
+        <main>
+            <!-- ########################################################### -->
+            <!-- Hero Section -->
+
+            <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <!-- 🎥 Background Video -->
+                <video id="bg-video" class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline
+                    style="opacity:1; transition: opacity 1s ease;">
+                    <source src="4.MP4" type="video/mp4">
+                </video>
+
+                <!-- 🌿 Dark overlay for better readability -->
+                <div class="absolute inset-0 bg-black/50"></div>
+
+                <!-- 🌾 Hero Content -->
+                <div class="relative text-center container mx-auto px-6 pt-24 scroll-animate">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+                        Empowering Agriculture with <br class="hidden md:block" />
+                        <span class="text-green-400">Smart Technology</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                        Bridging the gap between technology and agriculture — guiding farmers toward growth, innovation,
+                        and
+                        success
+                    </p>
+                    <a href="#services"
+                        class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 duration-300 inline-block">
+                        Start Exploring
+                    </a>
+                </div>
+            </section>
+
+            <!-- ########################################################### -->
+
+            <!-- Services Section -->
+            <section id="services" class="py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12 scroll-animate">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Our Core Services</h2>
+                        <p class="text-gray-400 mt-2">Precision farming at your fingertips.</p>
+                        <div class="w-24 h-1 bg-green-500 mx-auto mt-4 rounded"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                        <!-- Crop Recommendation Card -->
+                        <a href="http://127.0.0.1:5004/" class="block">
+                            <div class="service-card p-8 rounded-xl scroll-animate" style="transition-delay: 100ms;">
+                                <div class="bg-green-500/10 p-4 rounded-full inline-block mb-4">
+                                    <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.572L16.5 21.75l-.398-1.178a3.375 3.375 0 00-2.456-2.456L12.5 18l1.178-.398a3.375 3.375 0 002.456-2.456L16.5 14.25l.398 1.178a3.375 3.375 0 002.456 2.456L20.5 18l-1.178.398a3.375 3.375 0 00-2.456 2.456z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Crop Recommendation</h3>
+                                <p class="text-gray-400">Get tailored crop suggestions based on your soil type, climate,
+                                    and
+                                    market demand to maximize yield.</p>
+                            </div>
+                        </a>
+
+                        <!-- Fertilizer Recommendation Card -->
+                        <a href="http://127.0.0.1:5001/" class="block">
+                            <div class="service-card p-8 rounded-xl scroll-animate" style="transition-delay: 200ms;">
+                                <div class="bg-green-500/10 p-4 rounded-full inline-block mb-4">
+                                    <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        vie wBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Fertilizer Recommendation</h3>
+                                <p class="text-gray-400">Optimize nutrient management with precise NPK and micronutrient
+                                    fertilizer recommendations.</p>
+                            </div>
+                        </a>
+
+                        <!-- Plant Disease Detection Card -->
+                        <a href="http://127.0.0.1:5003/index.html" class="block">
+                            <div class="service-card p-8 rounded-xl scroll-animate" style="transition-delay: 300ms;">
+                                <div class="bg-green-500/10 p-4 rounded-full inline-block mb-4">
+                                    <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 01-6.23-.653L4.2 15.3m15.6 0c1.25.313 1.25 2.25 0 2.563l-3.445.861a2.25 2.25 0 00-1.63 1.63l-.862 3.445c-.313 1.25-2.25 1.25-2.563 0l-.861-3.445a2.25 2.25 0 00-1.63-1.63l-3.445-.862c-1.25-.313-1.25-2.25 0-2.563l3.445-.861a2.25 2.25 0 001.63-1.63l.862-3.445c.313-1.25 2.25-1.25 2.563 0l.861 3.445a2.25 2.25 0 001.63 1.63l3.445.861z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Plant Disease Detection</h3>
+                                <p class="text-gray-400">Simply upload a photo of a plant leaf and our AI will detect
+                                    diseases
+                                    and suggest control measures.</p>
+                            </div>
+                        </a>
+
+                        <!-- Weather prediction  -->
+                        <a href="http://127.0.0.1:8081/" class="block">
+                            <div class="service-card p-8 rounded-xl scroll-animate" style="transition-delay: 300ms;">
+                                <div class="bg-green-500/10 p-4 rounded-full inline-block mb-4">
+                                    <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 01-6.23-.653L4.2 15.3m15.6 0c1.25.313 1.25 2.25 0 2.563l-3.445.861a2.25 2.25 0 00-1.63 1.63l-.862 3.445c-.313 1.25-2.25 1.25-2.563 0l-.861-3.445a2.25 2.25 0 00-1.63-1.63l-3.445-.862c-1.25-.313-1.25-2.25 0-2.563l3.445-.861a2.25 2.25 0 001.63-1.63l.862-3.445c.313-1.25 2.25-1.25 2.563 0l.861 3.445a2.25 2.25 0 001.63 1.63l3.445.861z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Weather prediction</h3>
+                                <p class="text-gray-400">Reliable weather insights to help you plan irrigation,
+                                    harvesting,
+                                    and
+                                    crop protection.</p>
+                            </div>
+                        </a>
+
+                        <!-- Crop performance report -->
+                        <a href="http://127.0.0.1:5000" class="block">
+                            <div class="service-card p-8 rounded-xl scroll-animate" style="transition-delay: 300ms;">
+                                <div class="bg-green-500/10 p-4 rounded-full inline-block mb-4">
+                                    <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 01-6.23-.653L4.2 15.3m15.6 0c1.25.313 1.25 2.25 0 2.563l-3.445.861a2.25 2.25 0 00-1.63 1.63l-.862 3.445c-.313 1.25-2.25 1.25-2.563 0l-.861-3.445a2.25 2.25 0 00-1.63-1.63l-3.445-.862c-1.25-.313-1.25-2.25 0-2.563l3.445-.861a2.25 2.25 0 001.63-1.63l.862-3.445c.313-1.25 2.25-1.25 2.563 0l.861 3.445a2.25 2.25 0 001.63 1.63l3.445.861z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Crop performance report</h3>
+                                <p class="text-gray-400">Get detailed insights into your crop’s growth and performance.
+                                </p>
+                            </div>
+                        </a>
+
+                        <!-- Government scheme updates -->
+                        <a href="http://127.0.0.1:5002" class="block">
+                            <div class="service-card p-8 rounded-xl scroll-animate" style="transition-delay: 300ms;">
+                                <div class="bg-green-500/10 p-4 rounded-full inline-block mb-4">
+                                    <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 01-6.23-.653L4.2 15.3m15.6 0c1.25.313 1.25 2.25 0 2.563l-3.445.861a2.25 2.25 0 00-1.63 1.63l-.862 3.445c-.313 1.25-2.25 1.25-2.563 0l-.861-3.445a2.25 2.25 0 00-1.63-1.63l-3.445-.862c-1.25-.313-1.25-2.25 0-2.563l3.445-.861a2.25 2.25 0 001.63-1.63l.862-3.445c.313-1.25 2.25-1.25 2.563 0l.861 3.445a2.25 2.25 0 001.63 1.63l3.445.861z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Government scheme updates</h3>
+                                <p class="text-gray-400">Stay updated on the latest government schemes designed to
+                                    empower
+                                    farmers.</p>
+                            </div>
+                        </a>
+
+                        <!-- Plant Disease Detection Card -->
+                        <!-- <a href="https://www.amazon.in/" class="block">
+                            <div class="service-card p-8 rounded-xl scroll-animate" style="transition-delay: 300ms;">
+                                <div class="bg-green-500/10 p-4 rounded-full inline-block mb-4">
+                                    <svg class="w-8 h-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 01-6.23-.653L4.2 15.3m15.6 0c1.25.313 1.25 2.25 0 2.563l-3.445.861a2.25 2.25 0 00-1.63 1.63l-.862 3.445c-.313 1.25-2.25 1.25-2.563 0l-.861-3.445a2.25 2.25 0 00-1.63-1.63l-3.445-.862c-1.25-.313-1.25-2.25 0-2.563l3.445-.861a2.25 2.25 0 001.63-1.63l.862-3.445c.313-1.25 2.25-1.25 2.563 0l.861 3.445a2.25 2.25 0 001.63 1.63l3.445.861z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Market price display</h3>
+                                <p class="text-gray-400">Real-time Market Price Display for Farmers to Stay Updated with
+                                    Latest
+                                    Crop Rates.</p>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ########################################################################## -->
+            <!-- About Section -->
+            <section id="about" class="py-20 bg-black/20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12 scroll-animate">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">About KrishiSetu</h2>
+                        <p class="text-gray-400 mt-2">Our mission, our vision, and who we are.</p>
+                        <div class="w-24 h-1 bg-green-500 mx-auto mt-4 rounded"></div>
+                    </div>
+                    <div class="max-w-4xl mx-auto text-center text-lg text-gray-300 space-y-6">
+                        <p class="scroll-animate" style="transition-delay: 100ms;">
+                            KrishiSetu was born from a desire to bridge the gap between traditional farming practices
+                            and
+                            modern technological advancements. We believe that by providing farmers with accessible,
+                            data-driven tools, we can help increase their productivity, profitability, and
+                            sustainability.
+                        </p>
+                        <p class="scroll-animate" style="transition-delay: 200ms;">
+                            This initiative reflects a commitment to addressing current agricultural challenges
+                            through innovative and practical solutions.By leveraging emerging technologies and dedicated
+                            effort,
+                            KrishiSetu seeks to make a meaningful impact in the agricultural sector and contribute to a
+                            more
+                            food-secure future.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ########################################################### -->
+            <!-- Creators Section -->
+            <section id="creators" class="py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12 scroll-animate">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Meet the Creators</h2>
+                        <p class="text-gray-400 mt-2">The passionate minds behind KrishiSetu's innovation and success.
+                        </p>
+                        <div class="w-24 h-1 bg-green-500 mx-auto mt-4 rounded"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                        <div class="testimonial-card p-8 rounded-xl scroll-animate" style="transition-delay: 100ms;">
+                            <p class="text-gray-300 italic mb-4">
+                                "Sai Kiran envisioned KrishiSetu’s transformative role in agriculture. As the chief
+                                architect, his strategic guidance and technical expertise united the team, with most of
+                                the
+                                core projects and features being conceptualized and driven by
+                                him."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/48x48/334155/e2e8f0?text=SK" alt="Sai Kiran"
+                                    class="w-12 h-12 rounded-full mr-4 border-2 border-green-400">
+                                <div>
+                                    <h4 class="font-bold text-white">Sai Kiran</h4>
+                                    <p class="text-sm text-green-400">Lead Analyst, Hyderabad, Telangana</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card p-8 rounded-xl scroll-animate" style="transition-delay: 200ms;">
+                            <p class="text-gray-300 italic mb-4">
+                                "Soumya played an integral role supporting the technical development of KrishiSetu. By
+                                assisting in the creation of various modules, she has contributed valuable insights and
+                                helped ensure the platform's diagnostic tools are accessible and user-friendly."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/48x48/334155/e2e8f0?text=SP" alt="Soumya"
+                                    class="w-12 h-12 rounded-full mr-4 border-2 border-green-400">
+                                <div>
+                                    <h4 class="font-bold text-white">Soumya</h4>
+                                    <p class="text-sm text-green-400">Developer Specialist, Raichur, Karnataka</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mahendra: AI Specialist -->
+                        <div class="testimonial-card p-8 rounded-xl scroll-animate" style="transition-delay: 400ms;">
+                            <p class="text-gray-300 italic mb-4">
+                                "Mahendra has driven the integration of artificial intelligence within KrishiSetu,
+                                designing models that analyze agricultural data for improved crop health,
+                                and resource management to deliver
+                                insights to empower more sustainable farming."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/48x48/334155/e2e8f0?text=MD" alt="Mahendra"
+                                    class="w-12 h-12 rounded-full mr-4 border-2 border-green-400">
+                                <div>
+                                    <h4 class="font-bold text-white">Mahendra</h4>
+                                    <p class="text-sm text-green-400">AI Specialist, Raichur, Karnataka</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card p-8 rounded-xl scroll-animate" style="transition-delay: 300ms;">
+                            <p class="text-gray-300 italic mb-4">
+                                "Anushka provided instrumental farming insights that served as the crucial link between
+                                the technical team and real-world agricultural needs,helped and supported the team in
+                                aligning
+                                solutions with actual farming needs."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/48x48/334155/e2e8f0?text=AN" alt="Anushka"
+                                    class="w-12 h-12 rounded-full mr-4 border-2 border-green-400">
+                                <div>
+                                    <h4 class="font-bold text-white">Anushka</h4>
+                                    <p class="text-sm text-green-400">Agriculture Technologist, Nagpur, Maharashtra</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ########################################################### -->
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-20 bg-black/20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12 scroll-animate">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Get In Touch</h2>
+                        <p class="text-gray-400 mt-2">We'd love to hear from you. Send us a message.</p>
+                        <div class="w-24 h-1 bg-green-500 mx-auto mt-4 rounded"></div>
+                    </div>
+                    <div class="max-w-4xl mx-auto bg-gray-800/50 border border-gray-700 rounded-lg p-8 md:p-12 scroll-animate"
+                        style="transition-delay: 200ms;">
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                    <input type="text" id="name"
+                                        class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 border border-gray-600"
+                                        required>
+                                </div>
+                                <div>
+                                    <label for="email"
+                                        class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                    <input type="email" id="email"
+                                        class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 border border-gray-600"
+                                        required>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label for="message"
+                                        class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                    <textarea id="message" rows="5"
+                                        class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 border border-gray-600"
+                                        required></textarea>
+                                </div>
+                            </div>
+                            <div class="text-center mt-6">
+                                <button type="submit"
+                                    class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 duration-300 inline-block">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900">
+            <div class="container mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                        <a href="#" class="text-2xl font-bold text-white flex items-center mb-4">
+                            Krishi<span class="text-green-400">Setu</span>
+                        </a>
+                        <p class="text-gray-400">Empowering farmers with smart technology for a sustainable future.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                        <ul>
+                            <li class="mb-2"><a href="#about" class="text-gray-400 hover:text-green-400">About Us</a>
+                            </li>
+                            <li class="mb-2"><a href="#services" class="text-gray-400 hover:text-green-400">Services</a>
+                            </li>
+                            <li class="mb-2"><a href="#testimonials"
+                                    class="text-gray-400 hover:text-green-400">Testimonials</a></li>
+                            <li class="mb-2"><a href="#contact" class="text-gray-400 hover:text-green-400">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-green-400">Privacy Policy</a>
+                            </li>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-green-400">Terms of Service</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-green-400"><svg class="w-6 h-6"
+                                    fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                        clip-rule="evenodd" />
+                                </svg></a>
+                            <a href="#" class="text-gray-400 hover:text-green-400"><svg class="w-6 h-6"
+                                    fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                </svg></a>
+                            <a href="#" class="text-gray-400 hover:text-green-400"><svg class="w-6 h-6"
+                                    fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.477 2 12.019c0 4.916 3.593 9.02 8.25 9.873-.09-.458-.18-1.282.024-1.952.216-.704.1.916 1.32-2.945.378-.459.223-.7.497-1.15.274-.449.613-.91.613-1.542 0-.656-.37-1.144-.823-1.144-.328 0-.482.246-.482.518 0 .227.154.568.227.778.09.281-.16.518-.42.238-1.07-.732-1.74-2.316-1.74-3.784 0-2.023 1.45-3.633 3.25-3.633 1.712 0 2.99.986 2.99 2.534 0 1.597-.965 3.99-2.28 3.99-.497 0-.965-.497-.965-1.07 0-.81.55-1.542.823-2.023.274-.482.378-.636.55-.99.172-.354.145-.482.102-.636-.043-.172-.145-.227-.274-.114-1.22.42-1.98.42-1.98.42s-.482-1.542-.584-1.816c-.145-.42-.354-.613-.55-.613-.204 0-.354.114-.42.238-.172.42-.518 1.63-.518 1.63s-.328-1.3-.42-1.569c-.08-.227-.25-.378-.443-.378-.204 0-.354.145-.354.328 0 .145.114.378.114.378s-1.07 4.545-1.07 4.545c-.25.916-.024 1.83.94 1.83.18 0 .378-.114.55-.227.172-.114.25-.227.25-.227s.584 2.316.7 2.768c.227.867.75 1.569 1.22 1.569.25 0 .482-.043.482-.043s.18.7.42 1.32c.274.636.378.965.584 1.26.227.306.25.42.25.42s.114.043.114.043c.274.09.55.145.842.145 2.138 0 3.99-1.569 3.99-4.545 0-1.282-.42-2.437-1.094-3.25l-.024-.024s.043.024.068.024c.043 0 .09-.024.114-.024.043 0 .068 0 .09-.024.024 0 .043-.024.043-.024.227.354.227.732.024 1.15-.204.42-.306.636-.584 1.282-.274.636-1.243 2.92-1.243 2.92s.274 1.15.328 1.344c.043.18.068.354.068.518 0 .42-.145.81-.306 1.15-.172.354-.42.66-.7.916a10.033 10.033 0 01-1.428 1.15c-.145.09-.274.18-.42.25a9.995 9.995 0 01-1.15.54c-.114.043-.227.09-.328.114a10.06 10.06 0 01-2.048.443C9.02 21.98 9.51 22 10 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                                        clip-rule="evenodd" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                    <p>&copy; 2025 KrishiSetu. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // Preloader Logic
+                const preloader = document.getElementById('preloader');
+                const body = document.querySelector('body');
+
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        if (preloader) {
+                            preloader.classList.add('opacity-0', 'pointer-events-none');
+                        }
+                        body.classList.remove('loading');
+                        setTimeout(() => {
+                            if (preloader) {
+                                preloader.style.display = 'none';
+                            }
+                        }, 500); // Corresponds to transition duration
+                    }, 4000); // Should be same as animation duration
+                });
+
+                // Mobile Menu Toggle
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Scroll Animations
+                const scrollElements = document.querySelectorAll('.scroll-animate');
+                const elementInView = (el, dividend = 1) => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    return (
+                        elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                    );
+                };
+                const displayScrollElement = (element) => {
+                    element.classList.add('visible');
+                };
+                const handleScrollAnimation = () => {
+                    scrollElements.forEach((el) => {
+                        if (elementInView(el, 1.25)) {
+                            displayScrollElement(el);
+                        }
+                    });
+                };
+                window.addEventListener('scroll', handleScrollAnimation);
+                handleScrollAnimation(); // Trigger on load
+
+
+                // Disease Detection Image Preview
+                const fileUpload = document.getElementById('file-upload');
+                const imagePreviewContainer = document.getElementById('image-preview-container');
+                const imagePreview = document.getElementById('image-preview');
+                const imagePlaceholder = document.getElementById('image-placeholder');
+                const detectionResult = document.getElementById('detection-result');
+
+                fileUpload.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            imagePreview.src = e.target.result;
+                            imagePreviewContainer.classList.remove('hidden');
+                            imagePlaceholder.classList.add('hidden');
+                            detectionResult.classList.remove('hidden');
+                            detectionResult.querySelector('p').textContent = 'Analyzing...';
+
+                            // Simulate AI detection
+                            setTimeout(() => {
+                                const diseases = [
+                                    { name: 'Powdery Mildew', remedy: 'Apply recommended fungicides like sulfur or potassium bicarbonate.' },
+                                    { name: 'Leaf Spot', remedy: 'Remove infected leaves and apply a copper-based fungicide.' },
+                                    { name: 'Rust', remedy: 'Ensure good air circulation and use a fungicide containing myclobutanil.' },
+                                    { name: 'Healthy', remedy: 'No disease detected. Keep up the good work!' }
+                                ];
+                                const randomDisease = diseases[Math.floor(Math.random() * diseases.length)];
+                                detectionResult.querySelector('p').innerHTML = `<strong class="text-white">${randomDisease.name}</strong> detected. <br><strong>Recommendation:</strong> ${randomDisease.remedy}`;
+                            }, 2000);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+
+                // Chatbot
+                const chatbotToggler = document.getElementById('chatbot-toggler');
+                const chatbotWindow = document.getElementById('chatbot-window');
+                const closeChatbot = document.getElementById('close-chatbot');
+                const chatLog = document.getElementById('chat-log');
+                const chatInput = document.getElementById('chat-input');
+                const chatSend = document.getElementById('chat-send');
+
+                const toggleChatbot = () => {
+                    chatbotWindow.classList.toggle('scale-95');
+                    chatbotWindow.classList.toggle('opacity-0');
+                    chatbotWindow.classList.toggle('pointer-events-none');
+                    chatbotWindow.classList.toggle('scale-100');
+                };
+
+                chatbotToggler.addEventListener('click', toggleChatbot);
+                closeChatbot.addEventListener('click', toggleChatbot);
+
+                const addMessage = (message, sender) => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('flex');
+                    if (sender === 'user') {
+                        messageDiv.classList.add('justify-end');
+                        messageDiv.innerHTML = `<div class="chat-bubble bg-gray-700 text-white p-3 rounded-lg rounded-br-none">${message}</div>`;
+                    } else {
+                        messageDiv.innerHTML = `<div class="chat-bubble bg-green-600 text-white p-3 rounded-lg rounded-bl-none">${message}</div>`;
+                    }
+                    chatLog.appendChild(messageDiv);
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                };
+
+                const getBotResponse = (userInput) => {
+                    const lowerInput = userInput.toLowerCase();
+                    if (lowerInput.includes('crop')) {
+                        return 'For crop recommendation, please provide your soil type (e.g., sandy, clay), pH level, and average rainfall.';
+                    } else if (lowerInput.includes('fertilizer')) {
+                        return 'To recommend a fertilizer, I need the Nitrogen (N), Phosphorus (P), and Potassium (K) values of your soil.';
+                    } else if (lowerInput.includes('pest') || lowerInput.includes('disease')) {
+                        return 'Neem oil and insecticidal soaps are good organic options for many common pests. For specific diseases, please use our Plant Disease Detection tool.';
+                    } else if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
+                        return 'Hello there! How can I assist with your farming needs today?';
+                    } else {
+                        return "I'm sorry, I'm not sure how to answer that. You can ask me about crop recommendation, fertilizers, or pest control.";
+                    }
+                };
+
+                const handleSendMessage = () => {
+                    const message = chatInput.value.trim();
+                    if (message) {
+                        addMessage(message, 'user');
+                        chatInput.value = '';
+
+                        setTimeout(() => {
+                            const botResponse = getBotResponse(message);
+                            addMessage(botResponse, 'bot');
+                        }, 1000);
+                    }
+                };
+
+                chatSend.addEventListener('click', handleSendMessage);
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleSendMessage();
+                    }
+                });
+            });
+        </script>
+    </body>
+    <!-- ####################################################################################################### -->
+
+    <!-- CHATBOT START -->
+    <div class="fixed bottom-5 right-5 flex flex-col items-end z-50">
+        <!-- Chat Widget Container -->
+        <div id="chat-widget-container"
+            class="w-[90vw] max-w-md h-[70vh] max-h-[600px] bg-white rounded-2xl flex flex-col mb-4">
+            <!-- Header -->
+            <div class="bg-green-600 text-white p-4 rounded-t-2xl flex justify-between items-center shadow-md">
+                <div class="flex items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2H9V5a1 1 0 00-1-1H6a1 1 0 00-1 1v10a1 1 0 001 1h4v1zM4 15V6a1 1 0 011-1h1v10H5a1 1 0 01-1-1zm13-2.586L14.414 14H13V7h1.414L17 8.586V12.414z" />
+                    </svg>
+                    <div>
+                        <h3 class="font-bold text-lg">KrishiSetu Assistant</h3>
+                        <p class="text-sm opacity-90">Online</p>
+                    </div>
+                </div>
+                <button id="chat-close-button" class="text-white hover:opacity-80 transition-opacity"
+                    aria-label="Close chat">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50">
+                <!-- Chat messages will be appended here -->
+                <div class="flex items-start space-x-3 mb-4">
+                    <div class="p-2 bg-green-100 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2H9V5a1 1 0 00-1-1H6a1 1 0 00-1 1v10a1 1 0 001 1h4v1zM4 15V6a1 1 0 011-1h1v10H5a1 1 0 01-1-1zm13-2.586L14.414 14H13V7h1.414L17 8.586V12.414z" />
+                        </svg>
+                    </div>
+                    <div class="bg-green-200 text-gray-800 p-3 rounded-lg rounded-tl-none max-w-xs">
+                        <p class="text-sm">Hello! I am KrishiSetu bot. How can I help you today? Please select a
+                            language below to get started.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 border-t bg-white rounded-b-2xl">
+                <div class="mb-2">
+                    <select id="language-select" class="w-full p-2 border rounded-md text-sm text-gray-700 bg-white">
+                        <option value="en-US">English (US)</option>
+                        <option value="hi-IN">हिन्दी (Hindi)</option>
+                        <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+                        <option value="te-IN">తెలుగు (Telugu)</option>
+                        <option value="ta-IN">தமிழ் (Tamil)</option>
+                        <option value="mr-IN">मराठी (Marathi)</option>
+                        <option value="bn-IN">বাংলা (Bengali)</option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="chat-input" placeholder="Type your message..."
+                        class="flex-1 p-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 transition">
+                    <button id="chat-mic-button"
+                        class="p-3 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors"
+                        aria-label="Use microphone">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
+                    </button>
+                    <button id="chat-send-button"
+                        class="p-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors"
+                        aria-label="Send message">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Button to open chat -->
+        <button id="chat-open-button"
+            class="bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
+            aria-label="Open chat">
+            <svg xmlns="http://www.w3.org/2000/svg" id="chat-open-icon" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="chat-close-icon" class="h-8 w-8 hidden" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <!-- CHATBOT END -->
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const chatOpenButton = document.getElementById('chat-open-button');
+            const chatCloseButton = document.getElementById('chat-close-button');
+            const chatWidgetContainer = document.getElementById('chat-widget-container');
+            const chatSendButton = document.getElementById('chat-send-button');
+            const chatMicButton = document.getElementById('chat-mic-button');
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const languageSelect = document.getElementById('language-select');
+            const chatOpenIcon = document.getElementById('chat-open-icon');
+            const chatCloseIcon = document.getElementById('chat-close-icon');
+
+            // Speech Recognition and Synthesis
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            let recognition;
+            let isListening = false;
+            let currentlySpeakingText = null;
+
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+            } else {
+                console.warn("Speech Recognition not supported in this browser.");
+                chatMicButton.disabled = true;
+                chatMicButton.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+
+            // --- Event Listeners ---
+
+            // Toggle chat widget visibility
+            const toggleChat = () => {
+                chatWidgetContainer.classList.toggle('open');
+                chatOpenIcon.classList.toggle('hidden');
+                chatCloseIcon.classList.toggle('hidden');
+            };
+
+            chatOpenButton.addEventListener('click', toggleChat);
+            chatCloseButton.addEventListener('click', toggleChat);
+
+            // Send message on button click
+            chatSendButton.addEventListener('click', () => sendMessage());
+
+            // Send message on Enter key press
+            chatInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Handle microphone button click
+            chatMicButton.addEventListener('click', () => {
+                if (!SpeechRecognition) return;
+
+                if (isListening) {
+                    recognition.stop();
+                } else {
+                    startListening();
+                }
+            });
+
+            // Handle clicks on dynamically added speak buttons
+            chatMessages.addEventListener('click', (event) => {
+                const speakButton = event.target.closest('.speak-button');
+                if (speakButton) {
+                    const textToSpeak = speakButton.dataset.text;
+                    if (textToSpeak) {
+                        // If we are speaking AND the request is to speak the SAME text, then stop.
+                        if (window.speechSynthesis.speaking && currentlySpeakingText === textToSpeak) {
+                            window.speechSynthesis.cancel();
+                            currentlySpeakingText = null;
+                        } else {
+                            // Otherwise, speak the new text (this will also stop any previous speech).
+                            speakText(textToSpeak);
+                        }
+                    }
+                }
+            });
+
+            // --- Core Functions ---
+
+            /**
+             * Processes user input, displays it, and gets a response from the bot.
+             */
+            function sendMessage() {
+                const messageText = chatInput.value.trim();
+                if (messageText === '') return;
+
+                displayMessage(messageText, 'user');
+                chatInput.value = '';
+                getBotResponse(messageText);
+            }
+
+            /**
+             * Displays a message in the chat window.
+             * @param {string} text - The message text.
+             * @param {'user' | 'bot' | 'loading'} sender - Who sent the message.
+             */
+            function displayMessage(text, sender) {
+                // Remove existing loading indicator
+                const existingLoading = document.getElementById('loading-indicator');
+                if (existingLoading) {
+                    existingLoading.remove();
+                }
+
+                const messageDiv = document.createElement('div');
+                let content;
+
+                // Helper to escape HTML special characters for data attributes
+                const escapeHTML = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+
+
+                switch (sender) {
+                    case 'user':
+                        content = `
+                            <div class="flex items-start justify-end space-x-3 mb-4">
+                                <div class="bg-green-600 text-white p-3 rounded-lg rounded-br-none max-w-xs">
+                                    <p class="text-sm">${text}</p>
+                                </div>
+                                <div class="p-2 bg-gray-200 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    case 'bot':
+                        const escapedText = escapeHTML(text);
+                        content = `
+                            <div class="flex items-start space-x-3 mb-4">
+                                <div class="p-2 bg-green-100 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700" viewBox="0 0 20 20" fill="currentColor"><path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2H9V5a1 1 0 00-1-1H6a1 1 0 00-1 1v10a1 1 0 001 1h4v1zM4 15V6a1 1 0 011-1h1v10H5a1 1 0 01-1-1zm13-2.586L14.414 14H13V7h1.414L17 8.586V12.414z"/></svg>
+                                </div>
+                                <div class="bg-green-200 text-gray-800 p-3 rounded-lg rounded-tl-none max-w-xs flex items-center space-x-2">
+                                    <p class="text-sm flex-1">${text}</p>
+                                     <button class="speak-button text-green-700 hover:text-green-900 flex-shrink-0" data-text="${escapedText}" aria-label="Speak message">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        // speakText(text); // Speak the bot's response - REMOVED TO PREVENT AUTO-SPEAK
+                        break;
+                    case 'loading':
+                        content = `
+                             <div id="loading-indicator" class="flex items-start space-x-3 mb-4">
+                                <div class="p-2 bg-green-100 rounded-full">
+                                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700" viewBox="0 0 20 20" fill="currentColor"><path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2H9V5a1 1 0 00-1-1H6a1 1 0 00-1 1v10a1 1 0 001 1h4v1zM4 15V6a1 1 0 011-1h1v10H5a1 1 0 01-1-1zm13-2.586L14.414 14H13V7h1.414L17 8.586V12.414z"/></svg>
+                                </div>
+                                <div class="bg-green-200 text-gray-800 p-3 rounded-lg rounded-tl-none max-w-xs flex items-center space-x-2">
+                                    <span class="w-2 h-2 bg-green-700 rounded-full animate-pulse" style="animation-delay: 0s;"></span>
+                                    <span class="w-2 h-2 bg-green-700 rounded-full animate-pulse" style="animation-delay: 0.2s;"></span>
+                                    <span class="w-2 h-2 bg-green-700 rounded-full animate-pulse" style="animation-delay: 0.4s;"></span>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                }
+
+                messageDiv.innerHTML = content;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the bottom
+            }
+
+            /**
+             * Starts the speech recognition process.
+             */
+            function startListening() {
+                try {
+                    recognition.lang = languageSelect.value;
+                    recognition.start();
+                    isListening = true;
+                    chatMicButton.classList.add('listening', 'bg-green-200');
+                } catch (e) {
+                    console.error("Could not start recognition: ", e);
+                }
+            }
+
+            // --- Speech Recognition Event Handlers ---
+            if (recognition) {
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    chatInput.value = transcript;
+                    setTimeout(() => {
+                        sendMessage();
+                    }, 300); // Give user a moment to see the transcribed text
+                };
+
+                recognition.onend = () => {
+                    isListening = false;
+                    chatMicButton.classList.remove('listening', 'bg-green-200');
+                };
+
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    isListening = false;
+                    chatMicButton.classList.remove('listening', 'bg-green-200');
+                };
+            }
+
+            /**
+             * Uses the browser's speech synthesis to speak text.
+             * @param {string} text - The text to speak.
+             */
+            function speakText(text) {
+                // 1. Clean the text of special symbols for a more natural voice output.
+                // This regex removes characters that are not Unicode letters, numbers, or whitespace.
+                const cleanedText = text.replace(/[^\p{L}\p{N}\s]/gu, '');
+
+                // 2. Stop any currently playing speech before starting a new one.
+                window.speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(cleanedText);
+                utterance.lang = languageSelect.value;
+
+                // 3. Track the text that is now speaking.
+                currentlySpeakingText = text;
+
+                // 4. Reset the tracker when speech finishes naturally or is cancelled.
+                utterance.onend = () => {
+                    currentlySpeakingText = null;
+                };
+
+                // Optional: find a specific voice for the language
+                const voices = window.speechSynthesis.getVoices();
+                const selectedVoice = voices.find(voice => voice.lang === languageSelect.value);
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+                window.speechSynthesis.speak(utterance);
+            }
+
+            // This is needed to load voices on some browsers
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+
+
+            /**
+             * Calls the Gemini API to get a bot response.
+             * Implements exponential backoff for retries.
+             * @param {string} userQuery - The user's message.
+             */
+            async function getBotResponse(userQuery) {
+                displayMessage("", "loading");
+
+                const apiKey = "AIzaSyCefGXVSicgml1s4DzVF81uZN7ZiLcFWvY";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+                const payload = {
+                    contents: [
+                        {
+                            role: "model",
+                            parts: [{
+                                text: `You are AgriBot, an expert agricultural assistant.
+Respond in the SAME language the user types.
+Give short, practical tips.`
+                            }]
+                        },
+                        {
+                            role: "user",
+                            parts: [{ text: userQuery }]
+                        }
+                    ]
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        displayMessage(
+                            (result.error && result.error.message) ||
+                            "Server error. Try again later.",
+                            "bot"
+                        );
+                        return;
+                    }
+
+                    const botText =
+                        result?.candidates?.[0]?.content?.parts?.[0]?.text ||
+                        "I couldn't understand that. Please try again.";
+
+                    displayMessage(botText, "bot");
+
+                } catch (err) {
+                    displayMessage("Network error. Try again later.", "bot");
+                }
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

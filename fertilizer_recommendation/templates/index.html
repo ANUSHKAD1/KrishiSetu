@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Fertilizer Recommendation</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='A1.png') }}">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <!-- ######################################################################## -->
+
+ <header class="main-header">
+  <div class="logo">
+    <img src="{{ url_for('static', filename='A1.png') }}" alt="Logo" class="logo-img">
+    <span class="logo-text">Krishi<span style="color:#4CAF50;">Setu</span></span>
+  </div>
+  <!-- <nav class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </nav> -->
+</header>
+
+  <!-- ######################################################################## -->
+
+
+  <div class="container">
+    <h1>🌱 Fertilizer Recommendation System</h1>
+    <form id="fertilizer-form" method="POST" action="/predict">
+      <label>Temperature (°C):</label>
+      <input type="number" name="temperature" required value="{{ request.form.temperature or '' }}">
+
+      <label>Humidity (%):</label>
+      <input type="number" name="humidity" required value="{{ request.form.humidity or '' }}">
+
+      <label>Moisture (%):</label>
+      <input type="number" name="moisture" required value="{{ request.form.moisture or '' }}">
+
+      <label>Soil Type:</label>
+      <select name="soil">
+        {% for s in ['Sandy', 'Loamy', 'Black', 'Red', 'Clayey'] %}
+        <option value="{{ s }}" {% if soil==s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Crop Type:</label>
+      <select name="crop">
+        {% for c in ['Maize', 'Sugarcane', 'Cotton', 'Paddy', 'Barley', 'Wheat', 'Millets', 'Oil seeds', 'Pulses',
+        'Ground Nuts', 'Tobacco'] %}
+        <option value="{{ c }}" {% if crop==c %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+      <label>Nitrogen (N):</label>
+      <input type="number" name="nitrogen" required value="{{ request.form.nitrogen or '' }}">
+
+      <label>Phosphorous (P):</label>
+      <input type="number" name="phosphorous" required value="{{ request.form.phosphorous or '' }}">
+
+      <label>Potassium (K):</label>
+      <input type="number" name="potassium" required value="{{ request.form.potassium or '' }}">
+
+      <button type="submit">Get Recommendation</button>
+    </form>
+
+    {% if prediction %}
+    <div id="result">Recommended Fertilizer: <strong>{{ prediction }}</strong></div>
+    {% endif %}
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+/* General page style */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #181A1B;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container box */
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #6F7D8C;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  color: #E6EED6;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #1b4332;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border 0.2s ease;
+}
+
+input:focus {
+  border-color: #2d6a4f;
+  outline: none;
+}
+
+/* Button */
+button {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  background: #2d6a4f;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #1b4332;
+}
+
+/* Result box */
+#result {
+  margin-top: 25px;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 8px;
+  background: #f1fdf3;
+  border: 1px solid #95d5b2;
+  color: #2d6a4f;
+  font-weight: bold;
+}
+
+/* ################################################################### */
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(33, 37, 41, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 40px;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 38px;
+  height: 38px;
+  border-radius: 5px;
+  margin-right: 13px;
+}
+
+.site-title {
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.site-title .green {
+  color: #5efb8b;
+}
+
+.nav-links a {
+  color: #fff;
+  margin-left: 30px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #5efb8b;
+}
+
+/* Move body and container down to avoid overlap with header */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  margin-top: 80px;
+}
+
+/* Update result box to dark theme */
+/* #result {
+  margin-top: 25px;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 8px; */
+  /* background: #212529; */
+  /* border: 1px solid #333;
+  color: #5efb8b;
+  font-weight: bold;
+} */
+
+/* ################################################################### */
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #1f2225; /* same as your navbar color */
+  padding: 10px 30px;
+}
+
+/* Logo and text alignment */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.site-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.green {
+  color: #4caf50; /* green highlight for 'Setu' */
+}

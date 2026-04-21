@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Govt Scheme Updates - KrishiSetu</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='A1.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <header>
+        <div class="header-left">
+    <img src="{{ url_for('static', filename='A1.png') }}" alt="KrishiSetu Logo" class="logo">
+    <span>KrishiSetu</span>
+</div>
+
+        <div class="header-title">Government Scheme Updates</div>
+    </header>
+    <main>
+        <select id="schemeSelector" onchange="changeScheme()">
+            <option value="central">Central Schemes</option>
+            <option value="karnataka">Karnataka Schemes</option>
+        </select>
+        <section id="central" class="scheme-section">
+            <h2>Central Government Schemes</h2>
+            {{ central_table|safe }}
+        </section>
+        <section id="karnataka" class="scheme-section" style="display:none;">
+            <h2>Karnataka Government Schemes</h2>
+            {{ karnataka_table|safe }}
+        </section>
+    </main>
+
+    <script>
+        function changeScheme() {
+            const val = document.getElementById('schemeSelector').value;
+            document.getElementById('central').style.display = val === 'central' ? 'block' : 'none';
+            document.getElementById('karnataka').style.display = val === 'karnataka' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
