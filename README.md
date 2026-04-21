@@ -131,10 +131,6 @@ Farmers face:
 
 * Python (Flask)
 
-**Database**
-
-* MySQL
-
 **AI/ML**
 
 * Scikit-learn
