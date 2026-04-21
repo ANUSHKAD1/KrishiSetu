@@ -1,130 +1,140 @@
-# 🌱 KrishiSetu 2.0 – Where Tradition Meets Technology
+# 🌱 KrishiSetu 2.0
 
-## 📌 Overview
+### *Where Tradition Meets Technology*
 
-KrishiSetu is an intelligent, integrated farming platform designed to modernize agriculture using Artificial Intelligence (AI), Machine Learning (ML), and data analytics. It bridges the gap between traditional farming practices and modern technology to help farmers make informed decisions and improve productivity.
-
-The system provides multiple smart features in a single platform, enabling efficient farm management, sustainable practices, and better economic outcomes.
-
----
-
-## 🎯 Motivation
-
-Agriculture faces challenges such as:
-
-* Lack of reliable information
-* Climate unpredictability
-* Inefficient resource usage
-* Limited access to modern tools
-
-KrishiSetu aims to solve these problems by providing **data-driven insights and automation tools** to farmers.
+![Status](https://img.shields.io/badge/Status-Completed-success)
+![Tech](https://img.shields.io/badge/Tech-AI%20%7C%20ML%20%7C%20Web-blue)
+![Platform](https://img.shields.io/badge/Platform-Web%20App-orange)
+![License](https://img.shields.io/badge/License-Academic-lightgrey)
 
 ---
 
-## ❗ Problem Statement
+## 🚀 Project Overview
 
-Farmers often:
+KrishiSetu is an **AI-powered integrated farming platform** designed to help farmers make **smart, data-driven decisions**.
 
-* Rely on guesswork for crop and fertilizer decisions
-* Face crop losses due to late disease detection
-* Lack access to real-time weather updates
-* Miss government schemes due to poor awareness
+It combines multiple agricultural services into one platform:
 
-KrishiSetu provides a **centralized solution** to overcome these issues.
+* Crop Recommendation
+* Fertilizer Suggestion
+* Plant Disease Detection
+* Weather Monitoring
+* Crop Performance Analysis
+* AI Chatbot Support
+
+👉 Goal: Improve productivity, reduce losses, and promote sustainable farming. 
 
 ---
 
-## 🚀 Features
+## ❗ Problem We Solve
+
+Farmers face:
+
+* ❌ Lack of accurate information
+* ❌ Crop loss due to late disease detection
+* ❌ Poor fertilizer usage
+* ❌ No real-time weather insights
+* ❌ Difficulty accessing government schemes
+
+👉 KrishiSetu solves all in **one platform**
+
+---
+
+## ✨ Key Features
 
 ### 🌾 Crop Recommendation
 
-* Suggests best crops based on:
-
-  * Soil nutrients (N, P, K, pH)
-  * Weather conditions
-* Uses Machine Learning models
+* ML-based prediction
+* Uses soil + weather data
+* Suggests best crops
 
 ---
 
 ### 🌿 Fertilizer Recommendation
 
-* Provides precise fertilizer suggestions
-* Reduces cost and improves soil health
+* Precise nutrient suggestions
+* Reduces cost & improves yield
 
 ---
 
 ### 🦠 Plant Disease Detection
 
-* Upload plant image → AI detects disease
-* Gives:
-
-  * Diagnosis
-  * Treatment suggestions
+* Upload image → AI detects disease
+* Provides treatment suggestions
 
 ---
 
 ### 🌦️ Weather Dashboard
 
 * Real-time weather updates
-* Helps farmers plan:
-
-  * Irrigation
-  * Harvesting
-  * Fertilizer usage
+* Helps in farming decisions
 
 ---
 
 ### 📊 Crop Performance Report
 
-* Uses satellite data (Google Earth Engine)
-* Shows:
-
-  * Soil moisture
-  * Crop health (NDVI)
-* Helps improve future planning
+* Uses satellite data (NDVI)
+* Shows crop health & soil moisture
 
 ---
 
 ### 🤖 AI Chatbot
 
-* 24/7 assistance
-* Answers farming queries
-* Supports multiple languages
+* 24/7 farming assistant
+* Multi-language support
 
 ---
 
 ### 🏛️ Government Scheme Updates
 
-* Real-time updates on schemes
-* Personalized notifications for farmers
+* Latest scheme alerts
+* Personalized notifications
 
 ---
 
-## 🏗️ System Architecture
+## 🖼️ Screenshots (Add Your Images)
 
-KrishiSetu follows a **modular client-server architecture**:
+👉 Upload your screenshots in repo and replace below links
 
-* Frontend: HTML, CSS, JavaScript
-* Backend: Python (Flask)
-* Database: MySQL
-* AI/ML: TensorFlow, Scikit-learn
-* APIs Used:
+```
+/screenshots/home.png
+/screenshots/crop.png
+/screenshots/disease.png
+```
 
-  * Weather API
-  * Google Earth Engine
-  * Gemini API (Chatbot & AI)
-  * Twilio (Notifications)
+Example:
+
+![Home](screenshots/home.png)
+![Crop Recommendation](screenshots/crop.png)
+![Disease Detection](screenshots/disease.png)
 
 ---
 
-## ⚙️ Technologies Used
+## 🏗️ Tech Stack
 
-* Python
-* Flask
-* Machine Learning (ML Models)
+**Frontend**
+
 * HTML, CSS, JavaScript
+
+**Backend**
+
+* Python (Flask)
+
+**Database**
+
 * MySQL
-* APIs Integration
+
+**AI/ML**
+
+* Scikit-learn
+* TensorFlow
+
+**APIs**
+
+* Weather API
+* Google Earth Engine
+* Gemini API
+* Twilio API
 
 ---
 
@@ -144,62 +154,49 @@ KrishiSetu/
 
 ---
 
-## ▶️ How to Run the Project
+## ⚙️ Installation & Setup
 
-1. Clone the repository
-
-```
+```bash
 git clone https://github.com/ANUSHKAD1/KrishiSetu.git
-```
-
-2. Navigate to project folder
-
-```
 cd KrishiSetu
-```
-
-3. Install dependencies (example)
-
-```
 pip install -r requirements.txt
-```
-
-4. Run backend server
-
-```
 python app.py
 ```
 
-5. Open frontend in browser
+---
+
+## 🔐 Environment Setup
+
+Create `.env` file:
+
+```
+WEATHER_API_KEY=your_key
+TWILIO_SID=your_sid
+TWILIO_AUTH=your_token
+```
 
 ---
 
-## 🔐 Note on API Keys
+## 📈 Future Scope
 
-For security reasons:
-
-* API keys are not included in this repository
-* Add your own keys in `.env` file
-
----
-
-## 📈 Future Enhancements
-
-* Mobile App Development
-* Market price prediction
-* IoT-based smart farming integration
-* Advanced analytics dashboard
+* Mobile App 📱
+* IoT Integration 🌐
+* Smart Irrigation 💧
+* Market Price Prediction 📊
 
 ---
 
 ## 👩‍💻 Author
 
 **Anushka Daflapurkar**
-B.E Computer Science & Engineering
-VTU (2025-26)
+B.E CSE | VTU
 
 ---
 
-## 📜 License
+## ⭐ Show Your Support
 
-This project is for academic purposes.
+If you like this project:
+👉 Star ⭐ the repo
+👉 Share with others
+
+---
